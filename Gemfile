@@ -53,7 +53,7 @@ gem 'rubocop-rails', '~> 2.9'
 gem 'flamegraph', '~> 0.9'
 gem 'memory_profiler', '~> 0.9'
 gem 'rack-mini-profiler', '~> 2.0'
-gem 'stackprof', '~> 0.2'
+gem 'stackprof'
 
 # Ruby 2.7 compatibility: thwait and e2mmap are no longer bundled with Ruby, but
 # import needs thwait and ActiveSupport needs e2mmap.
@@ -71,6 +71,9 @@ gem 'stripe', '~> 5.28'
 
 # EeeMAILS!
 gem 'premailer-rails', '~> 1.11'
+
+gem 'ruby-debug-ide'
+gem 'debase'
 
 group :test do
   gem 'minitest', '~> 5.10.3'

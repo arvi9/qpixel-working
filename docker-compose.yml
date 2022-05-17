@@ -8,6 +8,8 @@ services:
       - ./docker/mysql:/var/lib/mysql
     env_file:
       - ${ENV_FILE_LOCATION}
+    ports:
+      - 3306:3306
     command: mysqld --default-authentication-plugin=mysql_native_password --skip-mysqlx
     cap_add:
       - SYS_NICE
@@ -17,6 +19,7 @@ services:
     build:
       context: "."
       dockerfile: docker/Dockerfile
+#    command: tail -f /dev/null
     depends_on:
       - db
     environment:
@@ -28,10 +31,13 @@ services:
       - ${ENV_FILE_LOCATION}
     ports:
       - "${LOCAL_DEV_PORT}:3000"
+      # Ports required for debugging
+      - "1234:1234"
+      - "26166:26168"
     volumes:
       - .:/code
-      - ./static:/var/www/static
-      - ./images:/var/www/images
+#      - ./static:/var/www/static
+#      - ./images:/var/www/images
     links:
       - redis
       - db
@@ -41,3 +47,5 @@ services:
     image: redis:latest
     depends_on:
       - db
+    ports:
+      - 6379:6379

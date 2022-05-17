@@ -19,7 +19,7 @@ RUN apt-get update && \
         libffi-dev \
         libgdbm-dev && \
    apt-get install -y default-mysql-server
-
+RUN apt-get -y install ghostscript
 # Install nodejs and imagemagick
 WORKDIR /opt
 RUN wget https://nodejs.org/dist/v12.18.3/node-v12.18.3-linux-x64.tar.xz && \
@@ -38,6 +38,9 @@ RUN gem install bundler && \
     bundle install
 
 EXPOSE 80 443 3000
-ENTRYPOINT ["/bin/bash"]
-CMD ["/code/docker/entrypoint.sh"]
+#ENTRYPOINT ["tail", "-f", "/dev/null"]
+CMD ["tail", "-f", "/dev/null"]
+#CMD ["/code/docker/entrypoint.sh"]
+#RUN chmod +x /code/docker/entrypoint.sh
+#ENTRYPOINT ["sh","/code/docker/entrypoint.sh" ]
 

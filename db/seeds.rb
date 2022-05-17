@@ -61,7 +61,9 @@ Dir.glob(Rails.root.join(find_glob)).each do |f|
       puts "#{type}: Created #{created}, #{updated > 0 ? "updated #{updated}, " : ''}skipped #{skipped}"
     end
   rescue StandardError => e
-    puts "Got error #{e}. Continuing..."
+    puts "Got error #{}. Continuing..."
+    puts "#{e.class}: #{e.message}"
+    puts e.backtrace.join("\n")
   end
 end
 
